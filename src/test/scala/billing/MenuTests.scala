@@ -65,17 +65,16 @@ class MenuTests extends FlatSpec with Matchers {
         assert(getFoodServiceCharge(true) == 0.20)
     }
 
-    it should "should decide correctly the service charge to apply if purchases include any no hot food" in {
+    it should "should decide correctly the service charge to apply if purchases include no hot food" in {
 
         assert(getFoodServiceCharge(false) == 0.10)
     }
 
-    it should "should decide correctly the service charge to apply if purchases include only drinks" in {
+    it should "should return true if purchases include only drinks" in {
 
         val mockPurchases = List(getDrink(Coffee), getDrink(Tea))
         assert(isDrinkOnly(mockPurchases) == true)
     }
-
 
     it should "get the correct service charge (0%) if customer purchases only drinks" in {
         
@@ -126,7 +125,7 @@ class MenuTests extends FlatSpec with Matchers {
         assert(getPurchaseTotal(mockPurchases) == 6.00)
     }
 
-    it should "accept a list of purchases (old foods, hot foods and drinks) and return the total, that includes a maximum service charge of £20.00" in {
+    it should "accept a list of purchases (cold foods, hot foods and drinks) and return the total, that includes a maximum service charge of £20.00" in {
 
         val mockPurchases = List(getDrink(Coffee), getDrink(Tea), getFood(Bread), getFood(Burger), getFood(Sausage))
         assert(getPurchaseTotal(mockPurchases) ==  125.00)
